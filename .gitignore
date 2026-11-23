@@ -1,0 +1,27 @@
+﻿# Dependencies
+**/node_modules/
+
+# Environment variables
+**/.env
+
+# Build files
+**/dist/
+**/build/
+**/.dart_tool/
+**/coverage/
+
+# Flutter generated files
+**/android/local.properties
+**/ios/Flutter/Generated.xcconfig
+
+# Logs
+**/*.log
+
+# Sensitive files
+**/*.pem
+**/*.key
+**/key.properties
+
+# System files
+.DS_Store
+Thumbs.db

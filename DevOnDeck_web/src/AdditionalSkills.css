@@ -1,0 +1,109 @@
+
+/* Houni na3tiw design lel container principal */
+.additional-skills {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+/* Design mta3 titre */
+.additional-skills h2 {
+  color: #292b45;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+/* Naligniw input w bouton fi nafs ligne */
+.skill-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Design mta3 champ de saisie */
+.skill-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #d5d7e0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Ki user yenzel 3al input, el bordure tetbadel */
+.skill-input input:focus {
+  border-color: #7565c9;
+}
+
+/* Design mta3 bouton Ajouter */
+.skill-input button {
+  padding: 12px 20px;
+  background-color: #7565c9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Ki user y7ot souris 3al bouton */
+.skill-input button:hover {
+  background-color: #5d4eaa;
+}
+
+/* Nna7iw les puces mta3 liste */
+.additional-skills ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Design mta3 kol compétence */
+.additional-skills li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #f5f4fb;
+  border-radius: 8px;
+  color: #292b45;
+}
+
+/* Design mta3 bouton Supprimer */
+.additional-skills li button {
+  padding: 7px 12px;
+  background-color: #e85d75;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Ki user y7ot souris 3al bouton Supprimer */
+.additional-skills li button:hover {
+  background-color: #c9435b;
+}
+
+/* Design mta3 message ki liste fergha */
+.additional-skills p {
+  color: #888888;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Bech el interface tetnejem tetadapté lel téléphone */
+@media (max-width: 480px) {
+  .skill-input {
+    flex-direction: column;
+  }
+
+  .skill-input button {
+    width: 100%;
+  }
+}
