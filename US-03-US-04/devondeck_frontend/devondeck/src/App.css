@@ -1,0 +1,21 @@
+/* Police Sora (Google Fonts). Cette ligne doit rester la PREMIÈRE du fichier. */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap");
+
+/* On force le thème clair (sinon les champs deviennent noirs
+   sur un ordinateur en mode sombre) */
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+}
+
+/* index.css (fourni par Vite) limite #root à 1126px et le centre avec
+   deux traits sur les côtés. Ici la page occupe tout l'écran. */
+#root {
+  width: 100%;
+  max-width: none;
+  border-inline: none;
+  text-align: left;
+}
