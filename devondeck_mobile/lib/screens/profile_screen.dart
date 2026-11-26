@@ -1,6 +1,7 @@
-
+﻿
 import 'package:flutter/material.dart';
 import '../widgets/additional_skills.dart';
+import '../widgets/developer_features.dart';
 
 // Houni na3mlou page profil mta3 el developpeur
 class ProfileScreen extends StatefulWidget {
@@ -15,10 +16,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Informations initiales mta3 el developpeur
   String fullName = 'Ahmed Ben Ali';
   String email = 'ahmed@example.com';
-  String profession = 'Développeur Full Stack';
+  String profession = 'DÃ©veloppeur Full Stack';
   String location = 'Tunis, Tunisie';
   String description =
-      'Développeur passionné par la création des applications web et mobiles.';
+      'DÃ©veloppeur passionnÃ© par la crÃ©ation des applications web et mobiles.';
 
   // Controllers mta3 formulaire
   final nameController = TextEditingController();
@@ -154,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           // Boutons annuler et enregistrer
           actions: [
 
-            // Nannulيو el modification
+            // NannulÙŠÙˆ el modification
             TextButton(
               onPressed: () {
                 Navigator.pop(dialogContext, false);
@@ -192,7 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Profil modifié avec succès !'),
+          content: Text('Profil modifiÃ© avec succÃ¨s !'),
           backgroundColor: Colors.green,
         ),
       );
@@ -341,41 +342,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 25),
 
-            // Titre description
-            const Text(
-              'À propos de moi',
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF25345C),
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            // Carte description
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 14,
-                  height: 1.6,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
+                       // FonctionnalitÃ©s US-09 et US-10 connectÃ©es au backend
+            const DeveloperFeatures(),
 
             const SizedBox(height: 25),
 
-            // Compétences principales
+            // CompÃ©tences principales
             const Text(
-              'Compétences principales',
+              'CompÃ©tences principales',
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.bold,
@@ -408,9 +382,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 25),
 
-            // Compétences supplémentaires
+            // CompÃ©tences supplÃ©mentaires
             const Text(
-              'Compétences supplémentaires',
+              'CompÃ©tences supplÃ©mentaires',
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.bold,
@@ -420,7 +394,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 12),
 
-            // Widget ajout et suppression compétences
+            // Widget ajout et suppression compÃ©tences
             const AdditionalSkills(),
 
             const SizedBox(height: 25),
