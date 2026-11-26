@@ -1,0 +1,505 @@
+/* ============================================================
+   Inscription.module.css : page d'inscription en 2 colonnes
+   (panneau violet à gauche, formulaire à droite)
+
+   Couleurs :
+   - violet foncé  #2A1450 → #4A1F7A → #7B2D8E   panneau de gauche
+   - bouton        #5B2D8E → #C0394F             dégradé violet → rouge
+   - fond droite   #F5F2F9                       lavande très clair
+   - bleu nuit     #1E1B2E                       titres et labels
+   - gris violet   #6B6280                       textes secondaires
+   ============================================================ */
+
+/* ---------- Animations (@keyframes) ---------- */
+
+@keyframes apparition {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes trembler {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+
+@keyframes glisserMessage {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fondu {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes rebond {
+  0%   { opacity: 0; transform: scale(0.6); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes tournerCoche {
+  from { transform: scale(0) rotate(-180deg); }
+  to   { transform: scale(1) rotate(0deg); }
+}
+
+/* La lueur rose du panneau de gauche respire lentement */
+@keyframes lueur {
+  from { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  to   { transform: translate(-60px, -50px) scale(1.2); opacity: 1; }
+}
+
+/* ---------- Page : 2 colonnes ---------- */
+
+.page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  font-family: "Sora", system-ui, "Segoe UI", sans-serif;
+  text-align: left;
+}
+
+/* ---------- Panneau de gauche (violet) ---------- */
+
+.panneau {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 64px;
+  background: linear-gradient(165deg, #2A1450 0%, #4A1F7A 55%, #7B2D8E 100%);
+  color: white;
+}
+
+/* Grande lueur rose en bas à droite */
+.panneau::after {
+  content: "";
+  position: absolute;
+  right: -140px;
+  bottom: -140px;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 86, 106, 0.5), transparent 70%);
+  animation: lueur 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Le contenu reste au-dessus de la lueur */
+.panneau > * {
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoTexte {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: white;
+}
+
+.logoTexte span {
+  color: #FF9E8A;
+}
+
+/* Devise avec un trait de chaque côté */
+.devise {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 300px;
+  margin: 10px 0 44px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.devise::before,
+.devise::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.slogan {
+  margin: 0 0 26px;
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  color: white;
+  text-align: left;
+}
+
+.description {
+  max-width: 470px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Colonne de droite (formulaire) ---------- */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 40px;
+  background-color: #F5F2F9;
+  animation: fondu 0.6s ease-out both;
+}
+
+/* Largeur maximale du formulaire */
+.contenu {
+  width: 100%;
+  max-width: 456px;
+}
+
+/* Onglets Développeur / Organisation */
+.onglets {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 32px;
+  background-color: #E9E3F1;
+  border-radius: 16px;
+}
+
+.onglet {
+  flex: 1;
+  padding: 13px 10px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #5B4A78;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.onglet:hover {
+  color: #7B2D8E;
+}
+
+/* Onglet sélectionné : blanc avec une petite ombre */
+.actif {
+  background-color: white;
+  color: #5B2D8E;
+  box-shadow: 0 2px 8px rgba(91, 45, 142, 0.15);
+}
+
+.container h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #1E1B2E;
+  text-align: left;
+}
+
+.intro {
+  margin: 0 0 24px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #6B6280;
+  text-align: left;
+}
+
+/* Les éléments du formulaire apparaissent en cascade */
+.container form > * {
+  animation: apparition 0.5s ease-out both;
+}
+.container form > *:nth-child(1) { animation-delay: 0.10s; }
+.container form > *:nth-child(2) { animation-delay: 0.17s; }
+.container form > *:nth-child(3) { animation-delay: 0.24s; }
+.container form > *:nth-child(4) { animation-delay: 0.31s; }
+.container form > *:nth-child(5) { animation-delay: 0.38s; }
+.container form > *:nth-child(6) { animation-delay: 0.45s; }
+.container form > *:nth-child(7) { animation-delay: 0.52s; }
+
+/* ---------- Champs ---------- */
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* évite qu'un champ déborde dans une ligne à 2 colonnes */
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  margin-bottom: 7px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1E1B2E;
+  transition: color 0.3s;
+}
+
+/* Quand on est dans un champ, son label devient violet */
+.formGroup:focus-within label {
+  color: #7B2D8E;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 13px 16px;
+  border: 1px solid #D9D0E8;
+  border-radius: 12px;
+  background-color: white;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: #1E1B2E;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.formGroup input::placeholder {
+  color: #9a93a8;
+}
+
+.formGroup input:hover,
+.formGroup select:hover {
+  border-color: #B9A6D6;
+}
+
+/* Quand on clique dans un champ : bordure violette et halo doux */
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #7B2D8E;
+  box-shadow: 0 0 0 4px rgba(123, 45, 142, 0.14);
+}
+
+/* Deux champs côte à côte */
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+/* ---------- Erreurs ---------- */
+
+/* !important pour passer devant la bordure normale */
+.inputError {
+  border-color: #C62828 !important;
+  animation: trembler 0.4s ease;
+}
+
+.errorMessage {
+  margin-top: 5px;
+  font-size: 12.5px;
+  color: #C62828;
+  animation: glisserMessage 0.3s ease-out;
+}
+
+/* ---------- Boutons ---------- */
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Bouton principal : dégradé violet → rouge, pleine largeur */
+.submitButton {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #5B2D8E, #C0394F, #5B2D8E);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(91, 45, 142, 0.28);
+  transition: transform 0.2s, box-shadow 0.3s, background-position 0.5s;
+}
+
+.submitButton:hover {
+  transform: translateY(-3px);
+  background-position: 100% 50%; /* le dégradé glisse */
+  box-shadow: 0 14px 28px rgba(192, 57, 79, 0.35);
+}
+
+.submitButton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Bouton "Réinitialiser" discret, en lien */
+.resetButton {
+  align-self: center;
+  padding: 4px;
+  border: none;
+  background: none;
+  color: #6B6280;
+  font-family: inherit;
+  font-size: 13.5px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.resetButton:hover {
+  color: #5B2D8E;
+}
+
+/* ---------- Lien "Déjà inscrit ?" ---------- */
+
+.lien {
+  margin: 18px 0 0;
+  font-size: 14.5px;
+  color: #6B6280;
+  text-align: left;
+}
+
+.lien button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #5B2D8E;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.lien button:hover {
+  color: #C0394F;
+}
+
+/* ---------- Popup ---------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(30, 20, 60, 0.6);
+  z-index: 100;
+  animation: fondu 0.3s ease-out;
+}
+
+.popup {
+  max-width: 400px;
+  padding: 34px 38px;
+  border-radius: 22px;
+  background-color: white;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(42, 20, 80, 0.3);
+  animation: rebond 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Rond en dégradé avec une coche, dessiné en CSS */
+.popup::before {
+  content: "✓";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5B2D8E, #C0394F);
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  animation: tournerCoche 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.popup h3 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  color: #1E1B2E;
+}
+
+.popup p {
+  margin: 0 0 22px;
+  line-height: 1.6;
+  color: #6B6280;
+}
+
+.popup button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #5B2D8E, #C0394F);
+  color: white;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.popup button:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablette et mobile : le panneau violet passe au-dessus du formulaire */
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .panneau {
+    padding: 32px 24px;
+  }
+
+  .devise {
+    margin-bottom: 24px;
+  }
+
+  .slogan {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+
+  .description {
+    display: none;
+  }
+
+  .container {
+    padding: 28px 20px 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* ---------- Accessibilité ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .panneau::after,
+  .container,
+  .container form > *,
+  .inputError,
+  .errorMessage,
+  .overlay,
+  .popup,
+  .popup::before {
+    animation: none;
+  }
+}
